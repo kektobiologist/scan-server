@@ -24,14 +24,14 @@ app.get('/scan', (req, res) => {
     if (err) {
       console.log(err)
       res.status(400)
-      res.send('error in scan')
+      res.send(err)
     } else {
-      console.log('got response: ' + stdout + stderr)
       res.sendFile('/tmp/image.jpg')
     }
   })
 })
 
-app.listen(3000, function () {
-  console.log('Example app listening on port 3000!')
+port = 8899
+app.listen(port, function () {
+  console.log('Example app listening on port ' + port)
 })
