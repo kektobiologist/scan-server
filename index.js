@@ -1,5 +1,8 @@
 const express = require('express')
+var cors = require('cors')
 const app = express()
+
+app.use(cors())
 
 const exec = require('child_process').exec;
 
