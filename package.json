@@ -1,0 +1,22 @@
+{
+  "name": "scan-server",
+  "version": "1.0.0",
+  "description": "network scanner",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/korroktheslavemaster/scan-server.git"
+  },
+  "author": "Arpit Saxena",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/korroktheslavemaster/scan-server/issues"
+  },
+  "homepage": "https://github.com/korroktheslavemaster/scan-server#readme",
+  "dependencies": {
+    "express": "^4.15.4"
+  }
+}
