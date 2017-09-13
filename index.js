@@ -6,7 +6,7 @@ app.use(cors())
 
 const exec = require('child_process').exec;
 
-const cmd = "scanimage --format=tiff >/tmp/image.tiff && convert -quality 100 /tmp/image.tiff /tmp/image.jpg"
+const cmd = "scanimage --resolution 100 --format=tiff >/tmp/image.tiff && convert -quality 100 /tmp/image.tiff /tmp/image.jpg"
 
 var RateLimit = require('express-rate-limit');
 var limiter = new RateLimit({
