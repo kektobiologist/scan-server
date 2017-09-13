@@ -6,7 +6,7 @@ app.use(cors())
 
 const exec = require('child_process').exec;
 
-const cmd = "scanimage --resolution 100 --format=tiff >/tmp/image.tiff && convert -quality 100 /tmp/image.tiff /tmp/image.jpg"
+const cmd = "scanimage --compression None --resolution 100 --format=tiff >/tmp/image.tiff && convert -quality 100 /tmp/image.tiff /tmp/image.jpg"
 
 var RateLimit = require('express-rate-limit');
 var limiter = new RateLimit({
@@ -33,12 +33,13 @@ app.get('/', function (req, res) {
 })
 
 app.get('/scan/test', (req, res) => {
-  var base64str = base64_encode('/tmp/image.jpg');
+  // serve local image
+  var base64str = base64_encode('image.jpg');
   res.send(base64str)
 })
 
 app.get('/scan/testImage', (req, res) => {
-  res.sendFile('/tmp/image.jpg')
+  res.sendFile('image.jpg')
 })
 
 
