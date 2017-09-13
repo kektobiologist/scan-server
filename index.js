@@ -18,9 +18,29 @@ var limiter = new RateLimit({
 //  apply to all requests 
 app.use(limiter);
 
+var fs = require('fs');
+
+// function to encode file data to base64 encoded string
+function base64_encode(file) {
+    // read binary data
+    var bitmap = fs.readFileSync(file);
+    // convert binary data to base64 encoded string
+    return new Buffer(bitmap).toString('base64');
+}
+
 app.get('/', function (req, res) {
   res.send('Hello World!')
 })
+
+app.get('/scan/test', (req, res) => {
+  var base64str = base64_encode('/tmp/image.jpg');
+  res.send(base64str)
+})
+
+app.get('/scan/testImage', (req, res) => {
+  res.sendFile('/tmp/image.jpg')
+})
+
 
 app.get('/scan', (req, res) => {
   exec(cmd, (err, stdout, stderr) => {
@@ -29,7 +49,8 @@ app.get('/scan', (req, res) => {
       res.status(400)
       res.send(err)
     } else {
-      res.sendFile('/tmp/image.jpg')
+      var base64str = base64_encode('/tmp/image.jpg');
+      res.send(base64str)
     }
   })
 })

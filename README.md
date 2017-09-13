@@ -12,3 +12,5 @@ pm2 start index.js
 sudo pm2 startup
 sudo pm2 save
 ```
+If it crashes, run `sudo pm2 startup systemd`
+* edit `/etc/hosts` so that `scan-server` points to scanner machine's IP address, or alternatively change router DHCP+DNS to make `scan-server` point to scanner machine
