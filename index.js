@@ -64,8 +64,8 @@ app.get("/scan", (req, res) => {
 
 var httpServer = http.createServer(app);
 var httpsServer = https.createServer(credentials, app);
-httpPort = 8899;
-httpsPort = 8900;
+httpPort = 8900;
+httpsPort = 8899;
 
 httpServer.listen(httpPort);
 httpsServer.listen(httpsPort);
