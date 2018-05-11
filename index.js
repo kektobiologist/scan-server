@@ -12,8 +12,8 @@ app.use(cors());
 
 const exec = require("child_process").exec;
 
-const cmd =
-  "scanimage --compression None --resolution 100 --format=tiff >/tmp/image.tiff && convert -quality 100 /tmp/image.tiff /tmp/image.jpg";
+const filePath = "C:\\Downloads\\image.jpg";
+const cmd = '\"C:\\Program\ Files\ (x86)\\NAPS2\\NAPS2.Console.exe\" -f -o ' + filePath
 
 var RateLimit = require("express-rate-limit");
 var limiter = new RateLimit({
@@ -41,22 +41,24 @@ app.get("/", function(req, res) {
 
 app.get("/scan/test", (req, res) => {
   // serve local image
-  var base64str = base64_encode("image.jpg");
+  var base64str = base64_encode(filePath);
   res.send(base64str);
 });
 
 app.get("/scan/testImage", (req, res) => {
-  res.sendFile("image.jpg");
+  res.sendFile(filePath);
 });
 
 app.get("/scan", (req, res) => {
+  // delete existing file if any
   exec(cmd, (err, stdout, stderr) => {
     if (err) {
       console.log(err);
       res.status(400);
       res.send(err);
     } else {
-      var base64str = base64_encode("/tmp/image.jpg");
+      // var base64str = base64_encode("/tmp/image.jpg");
+      var base64str = base64_encode(filePath);
       res.send(base64str);
     }
   });

@@ -14,3 +14,12 @@ sudo pm2 save
 ```
 If it crashes, run `sudo pm2 startup systemd`
 * edit `/etc/hosts` so that `scan-server` points to scanner machine's IP address, or alternatively change router DHCP+DNS to make `scan-server` point to scanner machine
+
+
+## Instructions (WINDOWS)
+
+* install naps2 https://www.naps2.com/
+* make default profile using gui
+* install `node` and `pm2`
+
+
