@@ -10,10 +10,21 @@ var credentials = { key: privateKey, cert: certificate };
 
 app.use(cors());
 
-const exec = require("child_process").exec;
+const child_process =  require("child_process");
+const exec = child_process.exec;
+const execSync = child_process.execSync;
 
-const cmd =
-  "scanimage --compression None --resolution 100 --format=tiff >/tmp/image.tiff && convert -quality 100 /tmp/image.tiff /tmp/image.jpg";
+const osName = execSync("uname").toString("utf8");
+var cmd;
+if (!/Darwin/.test(osName))
+  cmd =
+    "scanimage --compression None --resolution 100 --format=tiff >/tmp/image.tiff && convert -quality 100 /tmp/image.tiff /tmp/image.jpg";
+else
+  cmd =
+    "scanline -flatbed -a4 -resolution 100 -tiff -dir /tmp -name image && convert -quality 100 /tmp/image.tif /tmp/image.jpg" 
+
+console.log(osName)
+console.log(cmd)
 
 var RateLimit = require("express-rate-limit");
 var limiter = new RateLimit({
