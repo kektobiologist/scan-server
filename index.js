@@ -21,7 +21,7 @@ if (!/Darwin/.test(osName))
     "scanimage --compression None --resolution 100 --format=tiff >/tmp/image.tiff && convert -quality 100 /tmp/image.tiff /tmp/image.jpg";
 else
   cmd =
-    "scanline -flatbed -a4 -resolution 100 -tiff -dir /tmp -name image && convert -quality 100 /tmp/image.tif /tmp/image.jpg" 
+    "rm -f /tmp/image.tif && scanline -flatbed -a4 -resolution 100 -tiff -dir /tmp -name image && convert -quality 100 /tmp/image.tif /tmp/image.jpg" 
 
 console.log(osName)
 console.log(cmd)
